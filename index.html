@@ -1,0 +1,649 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Turistical Transfer VIP Service</title>
+  <meta name="description" content="Traslados privados VIP en República Dominicana. Puntualidad, seguridad y atención personalizada. Cotiza por WhatsApp." />
+
+  <style>
+    :root{
+      --teal:#17b6b0;
+      --teal2:#0ea5a1;
+      --deep:#0b2a33;
+      --deep2:#0f3a45;
+      --bg:#f6fbfb;
+      --card:#ffffff;
+      --text:#0b2530;
+      --muted:#51656d;
+      --shadow: 0 18px 45px rgba(11,42,51,.12);
+      --border: 1px solid rgba(11,42,51,.08);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 600px at 20% -10%, rgba(23,182,176,.22), transparent 60%),
+        radial-gradient(1000px 500px at 90% 0%, rgba(14,165,161,.18), transparent 55%),
+        var(--bg);
+    }
+    a{color:inherit; text-decoration:none}
+    .wrap{max-width:1100px; margin:0 auto; padding:22px 18px 90px}
+
+    /* Fade reveal */
+    .reveal{
+      opacity:0;
+      transform: translateY(10px);
+      transition: opacity .7s ease, transform .7s ease;
+      will-change: opacity, transform;
+    }
+    .reveal.is-visible{ opacity:1; transform: translateY(0); }
+    @media (prefers-reduced-motion: reduce){
+      .reveal{opacity:1; transform:none; transition:none}
+    }
+
+    /* Panel backgrounds */
+    .panel{
+      margin-top:18px;
+      border-radius: 22px;
+      padding:18px;
+      border: 1px solid rgba(23,182,176,.14);
+      background:
+        linear-gradient(135deg, rgba(23,182,176,.10), rgba(255,255,255,.90) 55%),
+        radial-gradient(900px 220px at 85% 0%, rgba(14,165,161,.10), transparent 55%),
+        #fff;
+      box-shadow: 0 18px 45px rgba(11,42,51,.08);
+    }
+
+    .topbar{
+      display:flex; align-items:flex-start; justify-content:space-between;
+      gap:16px; padding:6px 0 10px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:14px;
+    }
+
+    /* Logo grande + menos blanco */
+    .brand img{
+      width:260px; height:260px; object-fit:contain;
+      border-radius:999px;
+      background:#fff;
+      box-shadow: 0 18px 40px rgba(11,42,51,.16);
+      padding:5px;
+      border: 1px solid rgba(23,182,176,.22);
+    }
+    @media (max-width: 520px){
+      .brand img{width:175px; height:175px;}
+    }
+
+    .brand .name{font-weight:950; letter-spacing:.2px; font-size:16px; margin-top:4px}
+    .brand .tag{color:var(--muted); font-size:13px; margin-top:6px}
+
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:10px 14px;
+      border-radius:999px;
+      background:rgba(255,255,255,.88);
+      border:1px solid rgba(23,182,176,.18);
+      box-shadow: 0 10px 25px rgba(11,42,51,.06);
+      font-weight:950;
+      color:var(--deep);
+      backdrop-filter: blur(8px);
+      white-space:nowrap;
+    }
+
+    /* Social icons */
+    .social{
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+    .socialBtn{
+      width:42px;
+      height:42px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border-radius:999px;
+      background: rgba(255,255,255,.88);
+      border: 1px solid rgba(23,182,176,.18);
+      box-shadow: 0 10px 22px rgba(11,42,51,.06);
+      transition: transform .08s ease;
+    }
+    .socialBtn:active{transform: translateY(1px);}
+    .socialBtn svg{
+      width:20px;
+      height:20px;
+      fill: var(--deep);
+    }
+
+    .hero{
+      display:grid; grid-template-columns: 1.1fr .9fr;
+      gap:18px; align-items:stretch;
+      margin-top:8px;
+    }
+    @media (max-width: 900px){ .hero{grid-template-columns:1fr} }
+
+    .card{
+      background:var(--card);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      border:var(--border);
+      overflow:hidden;
+    }
+
+    .heroLeft{
+      padding:26px 22px;
+      background:
+        linear-gradient(135deg, rgba(23,182,176,.12), transparent 55%),
+        linear-gradient(180deg, #fff, #fff);
+    }
+
+    h1{
+      margin:0;
+      font-size:44px;
+      line-height:1.05;
+      letter-spacing:-.8px;
+    }
+    @media (max-width: 520px){ h1{font-size:34px} }
+
+    .sub{
+      margin:12px 0 0;
+      color:var(--muted);
+      font-size:16px;
+      line-height:1.6;
+      max-width:58ch;
+    }
+
+    .ctaRow{display:flex; flex-wrap:wrap; gap:12px; margin-top:18px}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding:13px 16px;
+      border-radius: 14px;
+      font-weight:950;
+      border:1px solid rgba(11,42,51,.10);
+      background:#fff;
+      box-shadow: 0 14px 30px rgba(11,42,51,.10);
+      transition: transform .08s ease;
+    }
+    .btn:active{transform: translateY(1px)}
+    .btnPrimary{
+      background: linear-gradient(135deg, var(--teal), var(--teal2));
+      color:#fff;
+      border:0;
+    }
+
+    .features{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+      margin-top:18px;
+    }
+    @media (max-width: 520px){ .features{grid-template-columns:1fr} }
+
+    .feat{
+      padding:14px 14px;
+      border-radius:14px;
+      background: rgba(11,42,51,.03);
+      border:1px solid rgba(11,42,51,.06);
+    }
+    .feat b{display:block}
+    .feat span{color:var(--muted); font-size:13px}
+
+    .heroRight{
+      display:flex; flex-direction:column;
+      padding:0;
+      background: linear-gradient(180deg, var(--deep), var(--deep2));
+      color:#fff;
+      position:relative;
+    }
+    .heroRight .inner{padding:22px}
+    .heroRight h2{margin:0; font-size:18px; letter-spacing:.3px}
+    .heroRight p{margin:10px 0 0; color: rgba(255,255,255,.82); line-height:1.55}
+    .badgeRow{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px}
+    .badge{
+      padding:10px 12px; border-radius:999px;
+      background: rgba(255,255,255,.10);
+      border: 1px solid rgba(255,255,255,.14);
+      font-weight:950;
+      font-size:13px;
+    }
+
+    .sectionTitle{
+      display:flex; align-items:center; gap:10px;
+      margin:0 0 10px;
+      font-size:18px;
+      color:var(--deep);
+      letter-spacing:.2px;
+      font-weight:950;
+    }
+    .sectionHint{
+      margin: 0 0 14px;
+      color: var(--muted);
+      line-height:1.6;
+      font-size:14px;
+    }
+
+    .grid{
+      display:grid; grid-template-columns: repeat(3, 1fr);
+      gap:14px;
+    }
+    @media (max-width: 980px){ .grid{grid-template-columns:1fr 1fr} }
+    @media (max-width: 520px){ .grid{grid-template-columns:1fr} }
+
+    .tile{padding:16px}
+
+    .gallery{
+      display:grid; grid-template-columns: repeat(3, 1fr);
+      gap:14px;
+    }
+    @media (max-width: 980px){ .gallery{grid-template-columns:1fr 1fr} }
+    @media (max-width: 520px){ .gallery{grid-template-columns:1fr} }
+
+    .mediaCard{
+      border-radius: 18px;
+      overflow:hidden;
+      border:var(--border);
+      background:#fff;
+      box-shadow: 0 14px 35px rgba(11,42,51,.10);
+    }
+    .mediaCard img{
+      width:100%;
+      height:210px;
+      object-fit:cover;
+      display:block;
+    }
+    .mediaCard .cap{ padding:12px 12px 14px; }
+    .mediaCard .cap b{display:block; font-size:14px}
+    .mediaCard .cap span{display:block; margin-top:4px; color:var(--muted); font-size:13px; line-height:1.45}
+
+    /* Reviews */
+    .reviews{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:12px;
+      max-width:860px;
+      margin:0 auto;
+    }
+    .reviewCard{
+      background:#fff;
+      border:var(--border);
+      border-radius:16px;
+      box-shadow: 0 12px 30px rgba(11,42,51,.10);
+      padding:14px;
+    }
+    .reviewCard p{
+      margin:0;
+      color:#1f2f36;
+      line-height:1.6;
+      font-size:14px;
+    }
+    .reviewFooter{
+      display:flex; align-items:center; gap:10px;
+      margin-top:10px;
+      color:var(--muted);
+      font-size:13px;
+      font-weight:950;
+    }
+
+    /* Flags always visible (Twemoji -> svg) */
+    .flagBadge{
+      width:38px; height:38px;
+      border-radius:999px;
+      display:flex; align-items:center; justify-content:center;
+      background: rgba(23,182,176,.10);
+      border: 1px solid rgba(23,182,176,.18);
+      box-shadow: 0 10px 22px rgba(11,42,51,.08);
+      flex:0 0 auto;
+      overflow:hidden;
+    }
+    .flagEmoji{
+      font-size:22px;
+      line-height:1;
+      transform: translateY(1px);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .flagBadge img.emoji{
+      width:22px;
+      height:22px;
+      display:block;
+    }
+
+    .footer{
+      margin-top:18px;
+      padding:6px 18px 0;
+      display:flex; align-items:center; justify-content:space-between;
+      gap:12px; flex-wrap:wrap;
+      color:var(--muted);
+    }
+
+    /* WhatsApp float */
+    .waFloat{
+      position:fixed; right:18px; bottom:18px;
+      width:58px; height:58px;
+      border-radius:999px;
+      background: linear-gradient(135deg, var(--teal), var(--teal2));
+      display:flex; align-items:center; justify-content:center;
+      box-shadow: 0 18px 40px rgba(11,42,51,.18);
+      border: 1px solid rgba(255,255,255,.35);
+    }
+    .waFloat svg{width:28px; height:28px; fill:#fff}
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <div class="topbar reveal">
+      <div class="brand">
+        <img src="milogo.jpeg" alt="Logo" />
+        <div>
+          <div class="name">Turistical Transfer VIP Service</div>
+          <div class="tag">Traslados privados • República Dominicana</div>
+        </div>
+      </div>
+
+      <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap; justify-content:flex-end;">
+        <a class="pill" href="#contacto">Cotiza en 30s</a>
+
+        <div class="social">
+          <a class="socialBtn" href="https://www.facebook.com/share/1GRedqe73j/?mibextid=wwXIfr" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.56 9.87v-6.98H7.9V12h2.54V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.25.2 2.25.2v2.46h-1.27c-1.25 0-1.64.77-1.64 1.56V12h2.8l-.45 2.89h-2.35v6.98A10 10 0 0 0 22 12Z"/></svg>
+          </a>
+
+          <a class="socialBtn" href="https://www.instagram.com/turisticaltransfervipservice?igsh=Ym0yc3VqdDAwZ25n&utm_source=qr" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm10 2H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3Zm-5 4.5A5.5 5.5 0 1 1 6.5 14 5.5 5.5 0 0 1 12 8.5Zm0 2A3.5 3.5 0 1 0 15.5 14 3.5 3.5 0 0 0 12 10.5ZM18 6.8a1.2 1.2 0 1 1-1.2 1.2A1.2 1.2 0 0 1 18 6.8Z"/></svg>
+          </a>
+
+          <a class="socialBtn" href="https://www.reddit.com/u/NuniRR/s/PFonKXYlNb" target="_blank" rel="noopener" aria-label="Reddit">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.2a2.4 2.4 0 0 0-4.2-1.6A10.2 10.2 0 0 0 12.1 9l.9-4.2 3 .6a1.9 1.9 0 1 0 .2-1l-3.7-.8a.9.9 0 0 0-1.1.7l-1 4.8a10.3 10.3 0 0 0-4.3 1.6A2.4 2.4 0 1 0 3 12.2a2.3 2.3 0 0 0 .9 1.8 4.7 4.7 0 0 0-.2 1.3c0 3.4 3.7 6.2 8.3 6.2s8.3-2.8 8.3-6.2a4.8 4.8 0 0 0-.2-1.3 2.3 2.3 0 0 0 .9-1.8Zm-13.4 2a1.3 1.3 0 1 1 1.3-1.3 1.3 1.3 0 0 1-1.3 1.3Zm7.9 4c-1 .9-2.2 1.3-3.9 1.3s-2.9-.4-3.9-1.3a.7.7 0 1 1 1-1c.7.6 1.6 1 2.9 1s2.2-.3 2.9-1a.7.7 0 0 1 1 1Zm.1-4a1.3 1.3 0 1 1 1.3-1.3 1.3 1.3 0 0 1-1.3 1.3Z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- HERO -->
+    <div class="hero">
+      <div class="card heroLeft reveal">
+        <h1>Tu traslado VIP, sin estrés</h1>
+        <p class="sub">
+          Transporte seguro, puntual y cómodo desde/hacia aeropuertos, hoteles y excursiones.
+          Atención directa por WhatsApp.
+        </p>
+
+        <div class="ctaRow">
+          <a class="btn btnPrimary"
+             href="https://wa.me/18493959916?text=Hola%20quiero%20cotizar%20un%20traslado%20VIP.%20Mi%20ruta%20es%3A%20____%20%2F%20Fecha%3A%20____%20%2F%20Personas%3A%20____"
+             target="_blank" rel="noopener">
+            📲 Cotizar por WhatsApp
+          </a>
+          <a class="btn" href="#vehiculos">Ver vehículos</a>
+        </div>
+
+        <div class="features">
+          <div class="feat"><b>Disponibles 24/7</b><span>Cuando aterrices, ahí estamos.</span></div>
+          <div class="feat"><b>Servicio privado</b><span>Individual, familiar o grupos.</span></div>
+          <div class="feat"><b>Conductores profesionales</b><span>Atentos, puntuales y educados.</span></div>
+          <div class="feat"><b>Vehículos cómodos</b><span>A/C y espacio para equipaje.</span></div>
+        </div>
+      </div>
+
+      <div class="card heroRight reveal">
+        <div class="inner">
+          <h2>¿Cómo funciona?</h2>
+          <p>1) Me dices ruta y fecha • 2) Te doy precio • 3) Confirmas • 4) Te espero.</p>
+          <div class="badgeRow">
+            <div class="badge">✅ Puntualidad</div>
+            <div class="badge">✅ Empresa local</div>
+            <div class="badge">✅ Atención personalizada</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SERVICIOS -->
+    <div id="servicios" class="panel reveal">
+      <div class="sectionTitle">🧭 Servicios</div>
+      <div class="grid">
+        <div class="card tile">
+          <b>✈️ Aeropuerto ↔ Hotel</b>
+          <p style="margin:8px 0 0; color:var(--muted); line-height:1.55; font-size:14px;">
+            Punta Cana, Santo Domingo, La Romana y más.
+          </p>
+        </div>
+        <div class="card tile">
+          <b>🏝️ Excursiones privadas</b>
+          <p style="margin:8px 0 0; color:var(--muted); line-height:1.55; font-size:14px;">
+            Isla Saona, buggies, playas y rutas personalizadas.
+          </p>
+        </div>
+        <div class="card tile">
+          <b>👨‍👩‍👧‍👦 Grupos y eventos</b>
+          <p style="margin:8px 0 0; color:var(--muted); line-height:1.55; font-size:14px;">
+            Familias, grupos grandes y actividades.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- VEHÍCULOS -->
+    <div id="vehiculos" class="panel reveal">
+      <div class="sectionTitle">🚐 Vehículos</div>
+      <p class="sectionHint">Transporte cómodo y seguro con aire acondicionado.</p>
+
+      <div class="gallery">
+        <div class="mediaCard">
+          <img src="Hyundai grand starex.jpeg" alt="Hyundai Grand Starex" />
+          <div class="cap">
+            <b>Hyundai Grand Starex</b>
+            <span>Ideal para familias y grupos pequeños con equipaje.</span>
+          </div>
+        </div>
+
+        <div class="mediaCard">
+          <img src="Toyota hice techo alto.jpeg" alt="Toyota Hiace Techo Alto" />
+          <div class="cap">
+            <b>Toyota Hiace Techo Alto</b>
+            <span>Espacio extra y más comodidad en el trayecto.</span>
+          </div>
+        </div>
+
+        <div class="mediaCard">
+          <img src="Toyota coaster.jpeg" alt="Toyota Coaster" />
+          <div class="cap">
+            <b>Toyota Coaster</b>
+            <span>Perfecto para grupos grandes y excursiones.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LUGARES -->
+    <div id="lugares" class="panel reveal">
+      <div class="sectionTitle">🏖️ Lugares y excursiones</div>
+      <p class="sectionHint">Dime tu plan y te llevamos con total tranquilidad.</p>
+
+      <div class="gallery">
+        <div class="mediaCard">
+          <img src="isla saona.png" alt="Isla Saona" />
+          <div class="cap">
+            <b>Isla Saona</b>
+            <span>Playas de arena blanca y aguas cristalinas.</span>
+          </div>
+        </div>
+
+        <div class="mediaCard">
+          <img src="buggies.jpg" alt="Buggies" />
+          <div class="cap">
+            <b>Buggies</b>
+            <span>Aventura y diversión (traslado y coordinación).</span>
+          </div>
+        </div>
+
+        <div class="mediaCard">
+          <img src="masinla.png" alt="Más destinos" />
+          <div class="cap">
+            <b>Más destinos</b>
+            <span>Hoteles, playas, city tours y rutas privadas.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- OPINIONES -->
+    <div id="opiniones" class="panel reveal">
+      <div class="sectionTitle">💬 Lo que dicen nuestros pasajeros</div>
+
+      <div class="reviews">
+        <!-- 4 DOMINICANOS -->
+        <div class="reviewCard">
+          <p>“Durísimo el servicio. Puntuales y muy atentos. Llegamos sin estrés al aeropuerto.”</p>
+          <div class="reviewFooter">
+            <span class="flagBadge"><span class="flagEmoji">🇩🇴</span></span>
+            <span>Juan C. — República Dominicana</span>
+          </div>
+        </div>
+
+        <div class="reviewCard">
+          <p>“Todo bien organizado. Vehículo limpio y chofer muy prudente. Recomendado.”</p>
+          <div class="reviewFooter">
+            <span class="flagBadge"><span class="flagEmoji">🇩🇴</span></span>
+            <span>María G. — República Dominicana</span>
+          </div>
+        </div>
+
+        <div class="reviewCard">
+          <p>“Servicio serio. Confirmaron por WhatsApp y llegaron antes de la hora. 10/10.”</p>
+          <div class="reviewFooter">
+            <span class="flagBadge"><span class="flagEmoji">🇩🇴</span></span>
+            <span>Carlos R. — República Dominicana</span>
+          </div>
+        </div>
+
+        <div class="reviewCard">
+          <p>“Excelente trato. Nos ayudaron con las maletas y el viaje fue súper cómodo.”</p>
+          <div class="reviewFooter">
+            <span class="flagBadge"><span class="flagEmoji">🇩🇴</span></span>
+            <span>Ana P. — República Dominicana</span>
+          </div>
+        </div>
+
+        <!-- 6 INTERNACIONALES -->
+        <div class="reviewCard">
+          <p>“Muy puntuales. Nos confirmaron por WhatsApp y el vehículo estaba impecable, con A/C. 10/10.”</p>
+          <div class="reviewFooter">
+            <span class="flagBadge"><span class="flagEmoji">🇨🇴</span></span>
+            <span>Mónica R. — Colombia</span>
+          </div>
+        </div>
+
+        <div class="reviewCard">
+          <p>“Servicio humano y profesional. Nos ayudaron con las maletas y nos sentimos cuidados todo el tiempo.”</p>
+          <div class="reviewFooter">
+            <span class="flagBadge"><span class="flagEmoji">🇪🇸</span></span>
+            <span>Pedro L. — España</span>
+          </div>
+        </div>
+
+        <div class="reviewCard">
+          <p>“Comunicación excelente. Precio claro, cero estrés. Llegamos a tiempo y súper cómodos.”</p>
+          <div class="reviewFooter">
+            <span class="flagBadge"><span class="flagEmoji">🇺🇸</span></span>
+            <span>Sarah M. — Estados Unidos</span>
+          </div>
+        </div>
+
+        <div class="reviewCard">
+          <p>“Muy responsables. El chofer llegó antes de la hora y el viaje fue tranquilo y seguro.”</p>
+          <div class="reviewFooter">
+            <span class="flagBadge"><span class="flagEmoji">🇦🇷</span></span>
+            <span>Diego F. — Argentina</span>
+          </div>
+        </div>
+
+        <div class="reviewCard">
+          <p>“Excelente atención. Todo coordinado rápido y sin precios escondidos. Recomendadísimo.”</p>
+          <div class="reviewFooter">
+            <span class="flagBadge"><span class="flagEmoji">🇲🇽</span></span>
+            <span>Ana S. — México</span>
+          </div>
+        </div>
+
+        <div class="reviewCard">
+          <p>“Vehículo limpio y cómodo. Nos esperaron con tiempo y fue un viaje súper tranquilo.”</p>
+          <div class="reviewFooter">
+            <span class="flagBadge"><span class="flagEmoji">🇨🇦</span></span>
+            <span>Lucas B. — Canadá</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTACTO -->
+    <div id="contacto" class="panel reveal">
+      <div class="sectionTitle">📲 Contacto</div>
+      <p class="sectionHint">
+        Escribe tu ruta + fecha + cantidad de personas y te envío el precio al instante.
+      </p>
+
+      <div class="ctaRow">
+        <a class="btn btnPrimary"
+           href="https://wa.me/18493959916?text=Hola%20quiero%20cotizar%20un%20traslado%20VIP.%20Mi%20ruta%20es%3A%20____%20%2F%20Fecha%3A%20____%20%2F%20Personas%3A%20____"
+           target="_blank" rel="noopener">
+          Abrir WhatsApp
+        </a>
+        <a class="btn" href="#opiniones">Ver opiniones</a>
+      </div>
+
+      <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+        <span style="color:var(--muted); font-weight:950;">Síguenos:</span>
+        <a class="btn" href="https://www.facebook.com/share/1GRedqe73j/?mibextid=wwXIfr" target="_blank" rel="noopener">Facebook</a>
+        <a class="btn" href="https://www.instagram.com/turisticaltransfervipservice?igsh=Ym0yc3VqdDAwZ25n&utm_source=qr" target="_blank" rel="noopener">Instagram</a>
+        <a class="btn" href="https://www.reddit.com/u/NuniRR/s/PFonKXYlNb" target="_blank" rel="noopener">Reddit</a>
+      </div>
+    </div>
+
+    <div class="footer reveal">
+      <div>© <span id="y"></span> Turistical Transfer VIP Service</div>
+    </div>
+  </div>
+
+  <!-- WhatsApp flotante -->
+  <a class="waFloat"
+     href="https://wa.me/18493959916?text=Hola%20quiero%20cotizar%20un%20traslado%20VIP.%20Mi%20ruta%20es%3A%20____%20%2F%20Fecha%3A%20____%20%2F%20Personas%3A%20____"
+     target="_blank" rel="noopener" aria-label="WhatsApp">
+    <svg viewBox="0 0 32 32" aria-hidden="true">
+      <path d="M19.11 17.2c-.28-.14-1.64-.81-1.9-.9-.25-.1-.44-.14-.62.14-.18.28-.71.9-.87 1.08-.16.18-.32.21-.6.07-.28-.14-1.18-.43-2.25-1.38-.83-.74-1.39-1.66-1.55-1.94-.16-.28-.02-.43.12-.57.13-.13.28-.32.42-.48.14-.16.18-.28.28-.46.09-.18.05-.35-.02-.49-.07-.14-.62-1.5-.85-2.06-.22-.53-.45-.46-.62-.47h-.53c-.18 0-.46.07-.7.35-.25.28-.95.93-.95 2.27 0 1.34.97 2.64 1.11 2.82.14.18 1.9 2.9 4.6 4.07.64.28 1.14.45 1.53.58.64.2 1.23.17 1.7.1.52-.08 1.64-.67 1.87-1.32.23-.65.23-1.21.16-1.32-.07-.11-.25-.18-.53-.32z"/>
+      <path d="M16.02 3C8.84 3 3 8.84 3 16.02c0 2.29.6 4.52 1.74 6.49L3 29l6.67-1.71a12.95 12.95 0 0 0 6.35 1.68h.01C23.2 28.97 29 23.13 29 15.95 29 8.77 23.2 3 16.02 3zm0 23.6h-.01a10.8 10.8 0 0 1-5.5-1.52l-.39-.23-3.96 1.02 1.06-3.86-.26-.4A10.8 10.8 0 1 1 16.02 26.6z"/>
+    </svg>
+  </a>
+
+  <!-- Twemoji: convierte banderas a SVG (siempre visible en PC) -->
+  <script src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js" crossorigin="anonymous"></script>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+
+    // Fade reveal
+    const els = document.querySelectorAll(".reveal");
+    const obs = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting) e.target.classList.add("is-visible");
+        else e.target.classList.remove("is-visible");
+      });
+    }, { threshold: 0.10, rootMargin: "0px 0px -10% 0px" });
+    els.forEach(el=>obs.observe(el));
+
+    // Render flags with Twemoji (only inside .flagEmoji)
+    document.querySelectorAll(".flagEmoji").forEach(el=>{
+      twemoji.parse(el, { folder: "svg", ext: ".svg" });
+    });
+  </script>
+</body>
+</html>
